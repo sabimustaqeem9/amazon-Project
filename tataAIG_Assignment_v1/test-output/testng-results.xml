@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2023-02-14T00:46:50 IST" name="Default suite" finished-at="2023-02-14T00:48:04 IST" duration-ms="74345">
+    <groups>
+    </groups>
+    <test started-at="2023-02-14T00:46:50 IST" name="Default test" finished-at="2023-02-14T00:48:04 IST" duration-ms="74345">
+      <class name="com.amazonTestCases.TC_amazonFlow">
+        <test-method is-config="true" signature="setup()[pri:0, instance:com.amazonTestCases.TC_amazonFlow@34a3d150]" started-at="2023-02-14T00:46:50 IST" name="setup" finished-at="2023-02-14T00:46:52 IST" duration-ms="2009" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="amazonFlow()[pri:0, instance:com.amazonTestCases.TC_amazonFlow@34a3d150]" started-at="2023-02-14T00:46:52 IST" name="amazonFlow" finished-at="2023-02-14T00:48:03 IST" duration-ms="71125" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- amazonFlow -->
+        <test-method is-config="true" signature="teardown()[pri:0, instance:com.amazonTestCases.TC_amazonFlow@34a3d150]" started-at="2023-02-14T00:48:03 IST" name="teardown" finished-at="2023-02-14T00:48:04 IST" duration-ms="1170" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- teardown -->
+      </class> <!-- com.amazonTestCases.TC_amazonFlow -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>

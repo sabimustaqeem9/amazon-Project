@@ -1,0 +1,244 @@
+package com.amazonPageObjects;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import junit.framework.Assert;
+
+public class amazonCompleteFlow {
+	WebDriver ldriver;
+	
+	public amazonCompleteFlow(WebDriver rDriver){
+		ldriver = rDriver;
+		PageFactory.initElements(rDriver,this);
+	}
+	
+	//Page Factory - Object Repository:
+	@FindBy(id = "twotabsearchtextbox")
+	WebElement SearchBox;
+	
+	@FindBy(id = "nav-search-submit-button")
+	WebElement SearchButton;
+	
+	@FindBy(xpath = "//*[@id=\"search\"]/div[1]/div[1]/div/span[1]/div[1]/div[3]/div/div/div/div/div/div[2]/div/div/div[1]/h2/a/span")
+	WebElement SearchedProduct;
+	
+	@FindBy(xpath = "//*[@id=\"p_36/1318507031\"]/span/a/span")
+	WebElement FilterByPrice;
+	
+	@FindBy(xpath = "//*[@id=\"color_name_1\"]")
+	WebElement SelectGoldColor;
+	
+	@FindBy(xpath = "//*[@id=\"color_name_3\"]")
+	WebElement SelectBlackColor;
+	
+	@FindBy(xpath = "//*[@id=\"color_name_2\"]")
+	WebElement SelectWhiteColor;
+	
+	@FindBy(xpath = "//*[@id=\"size_name_1\"]")
+	WebElement size128GB;
+	
+	@FindBy(xpath = "//*[@id=\"size_name_2\"]")
+	WebElement size256GB;
+	
+	@FindBy(xpath = "//*[@id=\"size_name_3\"]")
+	WebElement size512GB;
+	
+	@FindBy(name = "submit.add-to-cart")
+	WebElement addToCartButton;
+
+	@FindBy(xpath = "*[@id=\"attach-sidesheet-checkout-button\"]/span/input")
+	WebElement proceedToCheckout;
+	
+	@FindBy(xpath = "*[@id=\"sw-gtc\"]/span/a")
+	WebElement goToCart;
+	
+	@FindBy(xpath = "//*[@id=\"attach-sidesheet-view-cart-button\"]/span/input")
+	WebElement cart;
+	
+	@FindBy(id = "nav-cart-count")
+	WebElement viewcart;
+	
+	@FindBy(xpath = "*[@id=\"sc-active-C110de225-a71c-40e8-be96-f7b1cf144c1d\"]/div[4]/div/div[3]/ul/li[5]/span/span[2]")
+	WebElement productColor;
+	
+	@FindBy(xpath = "*[@id=\"sc-active-C110de225-a71c-40e8-be96-f7b1cf144c1d\"]/div[4]/div/div[3]/ul/li[6]/span/span[2]")
+	WebElement productSize;
+	
+	@FindBy(xpath = "*[@id=\"a-autoid-0-announce\"]/span[2]")
+	WebElement productQuantity;
+	
+	@FindBy(xpath = "*[@id=\"sc-buy-box-ptc-button\"]/span/input")
+	WebElement proceedToBuy;
+	
+	@FindBy(xpath = "*[@id=\"add-new-address-popover-link\"]")
+	WebElement addAddressButton;
+
+	@FindBy(xpath = "*[@id=\"address-ui-widgets-enterAddressFullName\"]")
+	WebElement fullName;
+	
+	@FindBy(xpath = "*[@id=\"address-ui-widgets-enterAddressPhoneNumber\"]")
+	WebElement phoneNumber;
+
+	@FindBy(xpath = "*[@id=\"address-ui-widgets-enterAddressPostalCode\"]")
+	WebElement postalCode;
+	
+	@FindBy(xpath = "*[@id=\"address-ui-widgets-enterAddressLine1\"]")
+	WebElement addAddressLine1;
+	
+	@FindBy(xpath = "*[@id=\"address-ui-widgets-enterAddressLine2\"]")
+	WebElement addAddressLine2;
+	
+	@FindBy(xpath = "*[@id=\"address-ui-widgets-enterAddressCity\"]")
+	WebElement city;
+	
+	@FindBy(xpath = "*[@id=\"address-ui-widgets-enterAddressStateOrRegion\"]/span/span/span")
+	WebElement state;
+	
+	@FindBy(xpath = "*[@id=\"address-ui-widgets-form-submit-button\"]/span/input")
+	WebElement useThisAddress;
+	
+	//function to search product
+	public void searchBox(String searchItem) throws InterruptedException {
+		SearchBox.sendKeys(searchItem);
+		SearchButton.click();
+		Thread.sleep(500);
+	}
+	
+	//function to filter results by price
+	public void filterByPrice() {
+		FilterByPrice.click();
+	}
+	
+	//function to add product to cart
+	public void addToCart(String itemColor, String itemSize) throws InterruptedException {
+		
+	    
+	    Thread.sleep(10000);
+	    
+		//select color
+		if (itemColor.toUpperCase().equals("GOLD")) {
+			if (SelectGoldColor.isEnabled()) {
+				SelectGoldColor.click();
+			}
+		}
+		else if(itemColor.toUpperCase().contains("BLACK")) {
+			if (SelectBlackColor.isEnabled()) {
+				SelectBlackColor.click();
+			}
+			
+		}
+		else if(itemColor.toUpperCase().equals("WHITE")) {
+			if (SelectWhiteColor.isEnabled()) {
+				SelectWhiteColor.click();
+			}
+			
+		}
+		Thread.sleep(10000);
+		
+		//select size
+		if(itemSize.equals("256")) {
+			if(size256GB.isEnabled()) {
+				size256GB.click();
+		}
+			else {
+				System.out.print("Size option disabled");
+			}
+		}
+		else if (itemSize.equals("128")) {
+			if(size128GB.isEnabled()) {
+				size128GB.click();
+		}
+			else {
+				System.out.print("Size option disabled");
+			}
+			
+		}
+		else if(itemSize.equals("512")) {
+			if(size512GB.isEnabled()) {
+				size512GB.click();
+		}
+			else {
+				System.out.print("Size option disabled");
+			}	
+		}
+		Thread.sleep(10000);
+		
+		//click on add to cart button
+		addToCartButton.click();
+		
+		Thread.sleep(10000);
+		
+		//click on goto cart button
+		if(cart.isDisplayed()) {
+			cart.click();
+		}
+		
+		Thread.sleep(10000);
+	}
+	
+	public void validateCheckoutDetails(String itemColor, String itemSize, String quantity) {
+		//get values from the checkout screen
+		String getProductcolor = ldriver.findElement(By.xpath("//*[@class='a-size-small' and contains(text(),'"+itemColor+"')]")).getText();  //fetch color
+		System.out.println(getProductcolor);
+		String getItemSize = ldriver.findElement(By.xpath("//*[@class='a-size-small' and contains(text(),'"+itemSize+"')]")).getText();  //fetch size
+		System.out.println(getItemSize);
+		String getItemQuantity = ldriver.findElement(By.xpath("//*[@class='a-dropdown-prompt' and contains(text(),'"+quantity+"')]")).getText();  //fetch quantity */
+		System.out.println(getItemQuantity);
+		/*List<WebElement> l = ldriver.findElements(By.className("a-size-small"));
+	      // list iteration
+	      System.out.println("Elements are: ");
+	      for(int j = 0; j< l.size(); j++) {
+	         //identify separate div
+	         String v = l.get(j).getText();
+	         System.out.println("Elements are: ");
+	         System.out.println(v);
+	      }*/
+		
+		//condition to validate color
+		 if(getProductcolor.equals(itemColor)) {
+			 Assert.assertTrue(true);
+		}
+		else {
+			Assert.assertTrue(false);		
+		}
+		
+		//condition to validate size
+		if(getItemSize.equals(itemSize+" GB")) {
+			Assert.assertTrue(true);
+		}
+		else {
+			Assert.assertTrue(false);			
+		}
+		
+		//condition to validate quantity
+		if(getItemQuantity.equals(quantity)) {
+			Assert.assertTrue(true);
+		}
+		else {
+			Assert.assertTrue(false);
+		}
+	}
+	public void addAddress(String fname, String phoneNo, String postalcode, String addressLine1Val, String addressLine2Val, String cityVal, String stateVal) throws InterruptedException {
+		
+		fullName.sendKeys(fname);
+		phoneNumber.sendKeys(phoneNo);
+		postalCode.sendKeys(postalcode);
+		addAddressLine1.sendKeys(addressLine1Val);
+		addAddressLine2.sendKeys(addressLine2Val);
+		city.sendKeys(cityVal);
+		Select dropdown = new Select(state);
+		dropdown.selectByValue(stateVal);
+		useThisAddress.click();
+		Thread.sleep(10000);
+	}
+		
+}
