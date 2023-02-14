@@ -2,20 +2,20 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2023-02-14T00:46:50 IST" name="Default suite" finished-at="2023-02-14T00:48:04 IST" duration-ms="74345">
+  <suite started-at="2023-02-14T16:09:09 IST" name="Default suite" finished-at="2023-02-14T16:10:18 IST" duration-ms="68269">
     <groups>
     </groups>
-    <test started-at="2023-02-14T00:46:50 IST" name="Default test" finished-at="2023-02-14T00:48:04 IST" duration-ms="74345">
+    <test started-at="2023-02-14T16:09:09 IST" name="Default test" finished-at="2023-02-14T16:10:18 IST" duration-ms="68269">
       <class name="com.amazonTestCases.TC_amazonFlow">
-        <test-method is-config="true" signature="setup()[pri:0, instance:com.amazonTestCases.TC_amazonFlow@34a3d150]" started-at="2023-02-14T00:46:50 IST" name="setup" finished-at="2023-02-14T00:46:52 IST" duration-ms="2009" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:com.amazonTestCases.TC_amazonFlow@5c6648b0]" started-at="2023-02-14T16:09:09 IST" name="setup" finished-at="2023-02-14T16:09:12 IST" duration-ms="2592" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="amazonFlow()[pri:0, instance:com.amazonTestCases.TC_amazonFlow@34a3d150]" started-at="2023-02-14T00:46:52 IST" name="amazonFlow" finished-at="2023-02-14T00:48:03 IST" duration-ms="71125" status="PASS">
+        <test-method signature="amazonFlow()[pri:0, instance:com.amazonTestCases.TC_amazonFlow@5c6648b0]" started-at="2023-02-14T16:09:12 IST" name="amazonFlow" finished-at="2023-02-14T16:10:16 IST" duration-ms="64445" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- amazonFlow -->
-        <test-method is-config="true" signature="teardown()[pri:0, instance:com.amazonTestCases.TC_amazonFlow@34a3d150]" started-at="2023-02-14T00:48:03 IST" name="teardown" finished-at="2023-02-14T00:48:04 IST" duration-ms="1170" status="PASS">
+        <test-method is-config="true" signature="teardown()[pri:0, instance:com.amazonTestCases.TC_amazonFlow@5c6648b0]" started-at="2023-02-14T16:10:16 IST" name="teardown" finished-at="2023-02-14T16:10:18 IST" duration-ms="1187" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- teardown -->

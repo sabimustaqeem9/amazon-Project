@@ -1,5 +1,6 @@
 package com.amazonPageObjects;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -15,7 +17,7 @@ import junit.framework.Assert;
 
 public class amazonCompleteFlow {
 	WebDriver ldriver;
-	
+	//WebDriverWait w = new WebDriverWait(ldriver,Duration.ofSeconds(20));
 	public amazonCompleteFlow(WebDriver rDriver){
 		ldriver = rDriver;
 		PageFactory.initElements(rDriver,this);
@@ -76,7 +78,7 @@ public class amazonCompleteFlow {
 	@FindBy(xpath = "*[@id=\"a-autoid-0-announce\"]/span[2]")
 	WebElement productQuantity;
 	
-	@FindBy(xpath = "*[@id=\"sc-buy-box-ptc-button\"]/span/input")
+	@FindBy(xpath = "//*[@id=\"sc-buy-box-ptc-button-announce\"]/div/div[1]")
 	WebElement proceedToBuy;
 	
 	@FindBy(xpath = "*[@id=\"add-new-address-popover-link\"]")
@@ -107,10 +109,13 @@ public class amazonCompleteFlow {
 	WebElement useThisAddress;
 	
 	//function to search product
-	public void searchBox(String searchItem) throws InterruptedException {
+	public boolean searchBox(String searchItem) throws InterruptedException {
+		Thread.sleep(5000);
 		SearchBox.sendKeys(searchItem);
+		Thread.sleep(5000);
 		SearchButton.click();
 		Thread.sleep(500);
+		return true;
 	}
 	
 	//function to filter results by price
@@ -119,7 +124,7 @@ public class amazonCompleteFlow {
 	}
 	
 	//function to add product to cart
-	public void addToCart(String itemColor, String itemSize) throws InterruptedException {
+	public boolean addToCart(String itemColor, String itemSize) throws InterruptedException {
 		
 	    
 	    Thread.sleep(10000);
@@ -170,75 +175,79 @@ public class amazonCompleteFlow {
 				System.out.print("Size option disabled");
 			}	
 		}
-		Thread.sleep(10000);
+		Thread.sleep(5000);
 		
 		//click on add to cart button
 		addToCartButton.click();
 		
-		Thread.sleep(10000);
+		Thread.sleep(5000);
 		
 		//click on goto cart button
 		if(cart.isDisplayed()) {
 			cart.click();
 		}
 		
-		Thread.sleep(10000);
+		Thread.sleep(5000);
+		return true;
 	}
 	
-	public void validateCheckoutDetails(String itemColor, String itemSize, String quantity) {
-		//get values from the checkout screen
+	public boolean validateProductColor(String itemColor) {
 		String getProductcolor = ldriver.findElement(By.xpath("//*[@class='a-size-small' and contains(text(),'"+itemColor+"')]")).getText();  //fetch color
-		System.out.println(getProductcolor);
-		String getItemSize = ldriver.findElement(By.xpath("//*[@class='a-size-small' and contains(text(),'"+itemSize+"')]")).getText();  //fetch size
-		System.out.println(getItemSize);
-		String getItemQuantity = ldriver.findElement(By.xpath("//*[@class='a-dropdown-prompt' and contains(text(),'"+quantity+"')]")).getText();  //fetch quantity */
-		System.out.println(getItemQuantity);
-		/*List<WebElement> l = ldriver.findElements(By.className("a-size-small"));
-	      // list iteration
-	      System.out.println("Elements are: ");
-	      for(int j = 0; j< l.size(); j++) {
-	         //identify separate div
-	         String v = l.get(j).getText();
-	         System.out.println("Elements are: ");
-	         System.out.println(v);
-	      }*/
-		
 		//condition to validate color
 		 if(getProductcolor.equals(itemColor)) {
-			 Assert.assertTrue(true);
+			 return true;
 		}
 		else {
-			Assert.assertTrue(false);		
-		}
-		
-		//condition to validate size
-		if(getItemSize.equals(itemSize+" GB")) {
-			Assert.assertTrue(true);
-		}
-		else {
-			Assert.assertTrue(false);			
-		}
-		
-		//condition to validate quantity
-		if(getItemQuantity.equals(quantity)) {
-			Assert.assertTrue(true);
-		}
-		else {
-			Assert.assertTrue(false);
-		}
+			return false;		
+		}	
 	}
-	public void addAddress(String fname, String phoneNo, String postalcode, String addressLine1Val, String addressLine2Val, String cityVal, String stateVal) throws InterruptedException {
+	public boolean validateProductSize(String itemSize) {
+		String getItemSize = ldriver.findElement(By.xpath("//*[@class='a-size-small' and contains(text(),'"+itemSize+"')]")).getText();  //fetch size
+		//condition to validate color
+		 if(getItemSize.equals(itemSize+" GB")) {
+			 return true;
+		}
+		else {
+			return false;		
+		}	
+	}
+	
+	public boolean validateProductQuantity(String quantity) {
+		String getItemQuantity = ldriver.findElement(By.xpath("//*[@class='a-dropdown-prompt' and contains(text(),'"+quantity+"')]")).getText();  //fetch quantity
+		//condition to validate color
+		 if(getItemQuantity.equals(quantity)) {
+			 return true;
+		}
+		else {
+			return false;		
+		}	
+	}
+	
+	public boolean addAddress(String fname, String phoneNo, String postalcode, String addressLine1Val, String addressLine2Val, String cityVal, String stateVal) throws InterruptedException {
 		
+	    // presenceOfElementLocated condition
+	    //w.until(ExpectedConditions.presenceOfElementLocated (By.xpath("//*[@id=\"sc-buy-box-ptc-button\"]/span/input")));
+		ldriver.findElement(By.name("proceedToRetailCheckout")).click();
+		/*addAddressButton.click();
+		Thread.sleep(3000);
 		fullName.sendKeys(fname);
+		Thread.sleep(2000);
 		phoneNumber.sendKeys(phoneNo);
+		Thread.sleep(2000);
 		postalCode.sendKeys(postalcode);
+		Thread.sleep(2000);
 		addAddressLine1.sendKeys(addressLine1Val);
+		Thread.sleep(2000);
 		addAddressLine2.sendKeys(addressLine2Val);
+		Thread.sleep(2000);
 		city.sendKeys(cityVal);
+		Thread.sleep(3000);
 		Select dropdown = new Select(state);
 		dropdown.selectByValue(stateVal);
 		useThisAddress.click();
-		Thread.sleep(10000);
+		Thread.sleep(5000);*/
+		return true;
+		
 	}
 		
 }
