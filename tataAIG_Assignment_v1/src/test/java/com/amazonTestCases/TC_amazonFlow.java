@@ -38,7 +38,7 @@ public class TC_amazonFlow extends BaseClass {
 		//Get list of webEelements to select the right product
 		 List <WebElement> allLinks = driver.findElements(By.xpath("//*[@class='a-size-medium a-color-base a-text-normal']")); //and contains(text(),'"+SearchedItem+"')
 		 for(WebElement link:allLinks){
-		 System.out.println(link.getText());
+		 
 		 if(link.getText().toUpperCase().contains(SearchedItem.toUpperCase())) {
 			 System.out.println(link.getText());
 			 link.click();
