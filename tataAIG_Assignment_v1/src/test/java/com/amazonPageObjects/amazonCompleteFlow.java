@@ -179,7 +179,6 @@ public class amazonCompleteFlow {
 		
 		//click on add to cart button
 		addToCartButton.click();
-		
 		Thread.sleep(5000);
 		
 		//click on goto cart button
@@ -203,7 +202,7 @@ public class amazonCompleteFlow {
 	}
 	public boolean validateProductSize(String itemSize) {
 		String getItemSize = ldriver.findElement(By.xpath("//*[@class='a-size-small' and contains(text(),'"+itemSize+"')]")).getText();  //fetch size
-		//condition to validate color
+		//condition to validate size
 		 if(getItemSize.equals(itemSize+" GB")) {
 			 return true;
 		}
@@ -214,7 +213,7 @@ public class amazonCompleteFlow {
 	
 	public boolean validateProductQuantity(String quantity) {
 		String getItemQuantity = ldriver.findElement(By.xpath("//*[@class='a-dropdown-prompt' and contains(text(),'"+quantity+"')]")).getText();  //fetch quantity
-		//condition to validate color
+		//condition to validate quantity
 		 if(getItemQuantity.equals(quantity)) {
 			 return true;
 		}
@@ -231,17 +230,17 @@ public class amazonCompleteFlow {
 		/*addAddressButton.click();
 		Thread.sleep(3000);
 		fullName.sendKeys(fname);
-		Thread.sleep(2000);
+		Thread.sleep(1000);
 		phoneNumber.sendKeys(phoneNo);
-		Thread.sleep(2000);
+		Thread.sleep(1000);
 		postalCode.sendKeys(postalcode);
-		Thread.sleep(2000);
+		Thread.sleep(1000);
 		addAddressLine1.sendKeys(addressLine1Val);
-		Thread.sleep(2000);
+		Thread.sleep(1000);
 		addAddressLine2.sendKeys(addressLine2Val);
-		Thread.sleep(2000);
+		Thread.sleep(1000);
 		city.sendKeys(cityVal);
-		Thread.sleep(3000);
+		Thread.sleep(2000);
 		Select dropdown = new Select(state);
 		dropdown.selectByValue(stateVal);
 		useThisAddress.click();
