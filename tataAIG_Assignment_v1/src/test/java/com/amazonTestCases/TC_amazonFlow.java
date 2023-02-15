@@ -27,7 +27,7 @@ public class TC_amazonFlow extends BaseClass {
 		else{
 	    	logger.info("FAIL: Product could not be searched");	
 		}
-		//System.out.println(driver.getTitle());
+		
 		if(driver.getTitle().equals("Amazon.in : "+SearchedItem)) {
 			logger.info("PASS: Searched Item page opened");	
 		}
@@ -44,7 +44,6 @@ public class TC_amazonFlow extends BaseClass {
 			 link.click();
 			 flag = true;
 			 Thread.sleep(500);
-			 //System.out.println("Searched item found");
 			 logger.info(SearchedItem+" product found");
 			 break;
 		 }
@@ -60,6 +59,7 @@ public class TC_amazonFlow extends BaseClass {
 		//switch to new tab
 		Thread.sleep(5000);
 		ArrayList<String> newTab = new ArrayList<String>(driver.getWindowHandles());
+		
 	    // change focus to new tab
 	    driver.switchTo().window(newTab.get(1));
 		
